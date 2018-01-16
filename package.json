@@ -1,0 +1,47 @@
+{
+  "name": "besouro.service",
+  "description": "...",
+  "version": "0.0.1",
+  "main": "app.js",
+  "scripts": {
+    "build2": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./npm-debug.log --copy-files",
+    "start2": "npm run build && node dist/app.js",
+    "test": "mocha -timeout 10000",
+    "babel": "babel-node app.js",
+    "babel-debug": "babel-node app.js --debug",
+    "pm2-start": "pm2 start --interpreter babel-node app.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "core-js": "^2.5.1",
+    "dotenv": "^4.0.0",
+    "error-handler": "^1.0.0",
+    "express": "^4.14.0",
+    "express-load": "^1.1.15",
+    "firebase": "^4.6.2",
+    "jsonwebtoken": "^7.1.9",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.6.4"
+  },
+  "engines": {
+    "node": "8.9.1",
+    "npm": "5.5.1"
+  },
+  "keywords": [
+    "caneco",
+    "heroku"
+  ],
+  "author": "wellinton monge",
+  "license": "Copyright (C) Monger - All Rights Reserved",
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-core": "*",
+    "babel-preset-es2015-node5": "*",
+    "babel-preset-stage-3": "*",
+    "babel-register": "*",
+    "nodemon": "^1.12.1",
+    "rimraf": "^2.6.2"
+  }
+}

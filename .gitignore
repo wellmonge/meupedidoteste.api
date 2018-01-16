@@ -1,0 +1,11 @@
+teste
+node_modules
+.vscode
+.idea
+.env
+.babelrc
+bin
+*.log
+.suo
+.vs
+.babelrc
