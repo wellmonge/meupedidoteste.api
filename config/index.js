@@ -10,7 +10,7 @@ var db = mongoose.connect(dburi, {useMongoClient: true, promiseLibrary: bluebird
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 mongoose.connection.once('open',function () {
-    console.log("It's opened"); 
+    console.log("Database connection it's opened!"); 
 });
 
 export default db;

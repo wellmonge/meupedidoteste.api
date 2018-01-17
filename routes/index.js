@@ -13,7 +13,7 @@ module.exports = function (app) {
         if (token) {
             jwt.verify(token, app.get('superSecret'), function (err, decoded) {
                 if (err) {
-                    return res.json({ success: false, message: 'Falha na autênticação.' });
+                    return res.json({ success: false, message: 'Falha na autï¿½nticaï¿½ï¿½o.' });
                 } else {
                     req.decoded = decoded;
                     next();
@@ -33,11 +33,11 @@ module.exports = function (app) {
             User.findOne({ username: req.body.name, email: req.body.name }, function (err, user) {
                 if (err) throw err;
                 if (!user) {
-                    res.json({ success: false, message: 'Falha na autênticação. Usuário não encontrado.' });
+                    res.json({ success: false, message: 'Falha na autï¿½nticaï¿½ï¿½o. Usuï¿½rio nï¿½o encontrado.' });
                 } else if (user) {
                     var _decp = utils.decrypt(user.password);
                     if (_decp != req.body.password) {
-                        res.json({ success: false, message: 'Falha na autênticação. Senha incorreta.' });
+                        res.json({ success: false, message: 'Falha na autï¿½nticaï¿½ï¿½o. Senha incorreta.' });
                     } else {
                         var token = jwt.sign(user, app.get('superSecret'), { expiresIn: 3 });
                         res.json({
@@ -50,6 +50,6 @@ module.exports = function (app) {
                 }
             });
         });
-    };
+    });
 
 }
