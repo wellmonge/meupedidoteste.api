@@ -1,5 +1,5 @@
 import User from "../models/user";
-import utils from "../utils/index";
+import utils from "../utils/crypto";
 import jwt from "jsonwebtoken";
 
 module.exports = function (app) {

@@ -1,5 +1,5 @@
 import Person from "../models/person";
-import utils from "../utils/index";
+import utils from "../utils/crypto";
   
 //const urlBase = "/api/person";
 const urlBase = "/person";

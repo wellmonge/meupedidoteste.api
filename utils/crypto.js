@@ -1,6 +1,3 @@
-export const successMessage = "Operação realizado com sucesso!";
-export const errorMessage = "Ocorreu erro ao realizar operação!";
-
 export const crypto = require('crypto')
     , algorithm = 'aes-256-ctr'
     , secret ='caneco-secret-key-2016'

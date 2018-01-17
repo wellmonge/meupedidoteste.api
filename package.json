@@ -6,7 +6,7 @@
   "scripts": {
     "build2": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./npm-debug.log --copy-files",
     "start2": "npm run build && node dist/app.js",
-    "test": "mocha --no-deprecation --opts test/mocha.opts test/*.js",
+    "test": "mocha --no-deprecation --opts test/mocha.opts test/scriptsTests/*.js",
     "babel": "babel-node app.js",
     "babel-debug": "babel-node app.js --debug",
     "pm2-start": "pm2 start --interpreter babel-node app.js"
@@ -29,7 +29,7 @@
     "npm": "5.5.1"
   },
   "keywords": [
-    "caneco",
+    "meuenviopedidoteste",
     "heroku"
   ],
   "author": "wellinton monge",
