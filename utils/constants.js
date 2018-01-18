@@ -1,2 +1,2 @@
-export const successMessage = "Operação realizado com sucesso!";
-export const errorMessage = "Ocorreu erro ao realizar operação!";
+export const SUCCESS_MESSAGE = "Operação realizado com sucesso!";
+export const ERROR_MESSAGE = "Ocorreu erro ao realizar operação!";

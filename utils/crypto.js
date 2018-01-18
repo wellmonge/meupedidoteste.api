@@ -1,7 +1,10 @@
-export const crypto = require('crypto')
-    , algorithm = 'aes-256-ctr'
-    , secret ='caneco-secret-key-2016'
-    , utils ={
+import app from '../app'
+import crypto from 'crypto';
+
+const algorithm = 'aes-256-ctr';
+const secret = process.env.SECRET;
+
+export const utils ={
             encrypt : function (text){
                 var cipher = crypto.createCipher(algorithm,secret)
                 var crypted = cipher.update(text,'utf8','hex')

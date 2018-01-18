@@ -9,7 +9,7 @@ module.exports = function (app) {
     });
 
     app.use('/api', function (req, res, next) {
-        var token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
         if (token) {
             jwt.verify(token, app.get('superSecret'), function (err, decoded) {
                 if (err) {
@@ -35,11 +35,11 @@ module.exports = function (app) {
                 if (!user) {
                     res.json({ success: false, message: 'Falha na aut�ntica��o. Usu�rio n�o encontrado.' });
                 } else if (user) {
-                    var _decp = utils.decrypt(user.password);
+                    const _decp = utils.decrypt(user.password);
                     if (_decp != req.body.password) {
                         res.json({ success: false, message: 'Falha na aut�ntica��o. Senha incorreta.' });
                     } else {
-                        var token = jwt.sign(user, app.get('superSecret'), { expiresIn: 3 });
+                        const token = jwt.sign(user, app.get('superSecret'), { expiresIn: 3 });
                         res.json({
                             success: true,
                             message: 'Token gerado com sucesso!',

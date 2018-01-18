@@ -1,21 +1,15 @@
 import { request } from '../helpers'
 describe('User Routes', function() {
   
-  describe('Rout GET /user/findAll', () =>{
-      it('should return a list of users', () =>{
-        request
-          .get("/user/findAll")
-          .end((err, res) =>{
+  // describe('Rout GET /user/findAll', () =>{
+  //     it('should return a list of users', () =>{
+  //       request
+  //         .get("/user/findAll")
+  //         .end((err, res) =>{
             
-            done(err);
-          });
-      });
-  });
-    
-  describe('Rout POST /create', () =>{
-    it('should return a user CREATED', () =>{
-
-    });
-  });
+  //           done(err);
+  //         });
+  //     });
+  // });
   
 });
