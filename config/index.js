@@ -5,12 +5,12 @@ import mongoose from 'mongoose';
 
 var dburi = process.env.MONGODB_URI;
 
-var db = mongoose.connect(dburi, {useMongoClient: true, promiseLibrary: bluebird });
+global.db = mongoose.connect(dburi,{ useMongoClient: true });
+
+mongoose.Promise = bluebird;
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
-mongoose.connection.once('open',function () {
-    console.log("Database connection it's opened!"); 
+mongoose.connection.once('open', () => {
+    console.log("Database connection is open");
 });
-
-export default db;

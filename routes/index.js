@@ -1,8 +1,9 @@
+import app from '../app';
 import User from "../models/user";
 import utils from "../utils/crypto";
 import jwt from "jsonwebtoken";
 
-module.exports = function (app) {
+module.exports = app => {
 
     app.get('/', function (req, res) {
         res.json({ message: "service is running." });

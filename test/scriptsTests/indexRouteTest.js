@@ -1,4 +1,3 @@
 describe('Index Routes', function() {
   
-  
 });
