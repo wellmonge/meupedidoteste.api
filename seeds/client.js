@@ -1,5 +1,4 @@
-{
-    "clients":[
+export const clients = [
         {
             "name": "Darth​ ​Vader"
         },{
@@ -12,4 +11,3 @@
             "name": "Han​ ​Sol"
         }
     ]
-}

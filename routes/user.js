@@ -9,32 +9,23 @@ const [seedPath, unicode] = ['./seeds/users.json', 'utf8'];
 //const urlBase = '/api/user/';
 const urlBase = '/user';
 
-
 module.exports = app => {
-
-    app.get(`${urlBase}/findall`, (req, res) => {
-        var dataItem = user.model.find({}, (err, result) => {
-            res.json(result);
-            console.log(resul)
-        });
-    });
 
     app.get(`${urlBase}/seed`, (req, res) => {
         var dataItem = new User.model({
             "username": "meupedidoauth",
-            "password": "meupedidoauth2018"
+            "password": utils.encrypt("meupedidoauth2018")
         });
         User.model.find({ username: dataItem.username }, (err, result) => {
+            if (err) res.json(err)
             if (result && result.length != 0) {
-                console.log("NOT SAVED");
-                return res.json(result);
+                res.json(result);
             } else {
-                console.log("SAVED");
                 dataItem.save((err, result) => {
                     if (err)
-                        return res.json(err);
+                         res.json(err);
 
-                    return res.json(result);
+                    res.json(result);
                 });
             }
         })
@@ -43,7 +34,7 @@ module.exports = app => {
     app.post(`${urlBase}/create`, (req, res) => {
         if (!req.body) return;
         req.body.password = utils.encrypt(req.body.password);
-        var dataItem = User.model(req.body);
+        var dataItem = new User.model(req.body);
         dataItem.save().then((err) => {
             console.log("salvou")
             if (err) {

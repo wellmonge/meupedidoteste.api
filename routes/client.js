@@ -1,69 +1,48 @@
 import { app } from '../app';
 import Client from "../models/client";
 import utils from "../utils/crypto";
-import { SUCCESS_MESSAGE, ERROR_MESSAGE } from '../utils/constants';
-import fs from "fs";
-const [seedPath, unicode] = ['./seeds/client.json', 'utf8'];
+import { successResult, errorResult } from '../utils/constants';
+
 //const urlBase = "/api/client";
 const urlBase = "/client";
+
 module.exports = app => {
     app.post(`${urlBase}/create`, (req, res) => {
         if (!req.body) return;
         const dataItem = new Client.model(req.body);
-        const promise = dataItem.save(function (err) {
-            if (err) {
-                res.json({
-                    Success: false,
-                    Message: ERROR_MESSAGE
-                });
-                return;
-            }
-            res.json({
-                Success: true,
-                Message: SUCCESS_MESSAGE
-            });
+        dataItem.save((err, result) => {
+            if (err)
+                 res.json(errorResult(err.Message));
+
+            res.json(successResult(result));
         });
     });
 
-    app.put(`${urlBase}/update`, () => {
+    app.put(`${urlBase}/update`, (req, res) => {
         if (!req.body) return;
-        const dataItem = req.body;
-        Client
-            .findOneAndUpdate({ name: dataItem.name }
+        const dataItem = new Client.model(req.body);
+        Client.model.findOneAndUpdate(
+            { name: dataItem.name }
             , dataItem
             , { new: true }
             , (err, clientResult) => {
-                if (err) {
-                    res.json({
-                        Success: false,
-                        Message: ERROR_MESSAGE
-                    });
-                    return;
-                }
-                res.json({
-                    Success: true,
-                    Message: SUCCESS_MESSAGE
-                });
+                if (err)
+                    res.json(errorResult(err.Message));
+
+                res.json(successResult(result));
             });
     });
 
-    app.delete(`${urlBase}/remove`, () => {
-        if (!req.body) return;
-        const dataItem = req.body;
-        Client
-            .findOneAndRemove({ name: dataItem.name }
+    app.delete(`${urlBase}/remove/`, (req, res) => {
+        if (!req.query) return;
+        Client.model.findOneAndRemove(
+            req.query 
             , (err, clientResult) => {
-                if (err) {
-                    res.json({
-                        Success: false,
-                        Message: ERROR_MESSAGE
-                    });
-                    return;
-                }
-                res.json({
-                    Success: true,
-                    Message: SUCCESS_MESSAGE
-                });
+                if (err)
+                    res.json(errorResult(err.Message));
+
+                res.json(successResult(result));
             });
     });
+
 }

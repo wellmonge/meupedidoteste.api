@@ -1,5 +1,4 @@
-{
-    "products":[
+export const products = [
         {
             "name": "Millenium​ ​Falcon",
             "unitPrice": 550.000 
@@ -26,4 +25,3 @@
             "unitPrice": 1.500
         }
     ]
-}
