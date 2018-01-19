@@ -12,7 +12,7 @@ module.exports = (app) => {
     if (token) {
       jwt.verify(token, app.get('superSecret'), (err, decoded) => {
         if (err) {
-          return res.json({ success: false, message: 'Falha na aut�ntica��o.' });
+          next(err);
         }
         req.decoded = decoded;
         next();

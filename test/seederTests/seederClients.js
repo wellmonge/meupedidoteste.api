@@ -11,7 +11,7 @@ describe('Client Routes', () => {
         .get('/client/seed')
         .end((err, res) => {
           if (err) done(err);
-          //   expect(res.body[0].name).to.be.equal(defaultUser.username);
+          expect(res.body[0].name).to.be.equal(defaultClient.username);
           done();
         });
     });

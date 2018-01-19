@@ -9,8 +9,6 @@ global.db = mongoose.connect(dburi, { useMongoClient: true });
 
 mongoose.Promise = bluebird;
 
-mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connection.on('error');
 
-mongoose.connection.once('open', () => {
-  console.log('Database connection is open');
-});
+mongoose.connection.once('open', () => 'Database connection is open');

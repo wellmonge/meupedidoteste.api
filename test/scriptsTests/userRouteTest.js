@@ -1,6 +1,5 @@
 import { request, expect } from '../helpers';
 import { utils } from '../../utils/crypto';
-import { fail } from 'assert';
 
 describe('User Routes', () => {
   const defaultUser = {

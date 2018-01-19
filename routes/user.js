@@ -12,15 +12,15 @@ module.exports = (app) => {
       username: 'meupedidoauth',
       password: utils.encrypt('meupedidoauth2018'),
     });
-    User.model.find({ username: dataItem.username }, (err, result) => {
-      if (err) res.json(err);
-      if (result && result.length != 0) {
+    User.model.find({ username: dataItem.username }, (errFind, result) => {
+      if (errFind) res.json(errFind);
+      if (result && result.length !== 0) {
         res.json(result);
       } else {
-        dataItem.save((err, result) => {
+        dataItem.save((err, userResult) => {
           if (err) { res.json(err); }
 
-          res.json(result);
+          res.json(userResult);
         });
       }
     });
@@ -50,7 +50,7 @@ module.exports = (app) => {
 
     let updatingUser = {};
     updatingUser = Object.assign(updatingUser, req.body);
-    delete updatingUser._id;
+    delete updatingUser.id;
 
     User.model.findOneAndUpdate(
       {
