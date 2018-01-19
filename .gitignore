@@ -4,8 +4,9 @@ node_modules
 .idea
 .env
 .babelrc
+.eslintrc
 bin
 *.log
 .suo
 .vs
-.babelrc
+yarn.lock
