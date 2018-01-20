@@ -53,7 +53,7 @@ module.exports = (app) => {
         if (err) { res.sendStatus(412); }
 
         res.sendStatus(204);
-      }
+      },
     );
   });
 };

@@ -9,8 +9,7 @@ const urlBase = '/Product';
 module.exports = (app) => {
   app.get(`${urlBase}/seed`, (req, res) => {
     Product.model.insertMany(productsSeed, (err, result) => {
-      if (err) res.json(err);
-
+      if (err) { res.json(err); }
       res.json(result);
     });
   });
@@ -21,9 +20,7 @@ module.exports = (app) => {
     const dataItem = new Product.model(req.body);
 
     dataItem.save((err, productResult) => {
-      if (err) {
-        res.json(errorResult(err.Message));
-      }
+      if (err) { res.json(errorResult(err.Message)); }
 
       res.json(successResult(productResult));
     });
@@ -34,18 +31,14 @@ module.exports = (app) => {
 
     let updating = {};
     updating = Object.assign(updating, req.body);
+    updating.name = 'teste3';
     delete updating._id;
 
-    updating.name = req.body.name;
-    updating.unitPrice = req.body.unitPrice;
-    updating.multiple = req.body.multiple;
-
-
     Product.model.findOneAndUpdate(
-      { name: req.body.oldName }
+      { name: updating.name }
       , updating
       , {
-        new: true,
+        new: false,
       }
       , (err, productResult) => {
         if (err) {
@@ -54,18 +47,19 @@ module.exports = (app) => {
 
         res.json(successResult(productResult));
       },
+
     );
   });
 
-  app.delete(`${urlBase}/remove`, (req, res) => {
+  app.delete(`${urlBase}/remove/`, (req, res) => {
     if (!req.query) return;
+
     Product.model.findOneAndRemove(
       req.query
       , (err) => {
         if (err) { res.sendStatus(412); }
-
         res.sendStatus(204);
-      }
+      },
     );
   });
 };
