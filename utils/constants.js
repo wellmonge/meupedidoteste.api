@@ -19,7 +19,7 @@ export const defaultClient = {
 
 export const defaultProduct = {
   name: 'A280 blaster rifle',
-  unitPrice: 10.000,
+  unitPrice: 10000,
   multiple: 1,
 };
 

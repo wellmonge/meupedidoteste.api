@@ -25,17 +25,26 @@ module.exports = (app) => {
 
   app.put(`${urlBase}/update`, (req, res) => {
     if (!req.body) return;
-    const dataItem = new Client.model(req.body);
+    
+    let updating = {};
+    updating = Object.assign(updating, req.body);
+    updating.name =  req.body.name
+    delete updating._id;
+
     Client.model.findOneAndUpdate(
-      { name: dataItem.name }
-      , dataItem
-      , { new: true }
+      { name: req.body.oldName }
+      , updating
+      , { 
+        new: true 
+      }
       , (err, clientResult) => {
-        if (err) { res.json(errorResult(err.Message)); }
+        if (err) 
+          res.json(errorResult(err.Message)); 
 
         res.json(successResult(clientResult));
-      },
+      }
     );
+
   });
 
   app.delete(`${urlBase}/remove`, (req, res) => {
@@ -43,9 +52,13 @@ module.exports = (app) => {
     Client.model.findOneAndRemove(
       req.query
       , (err) => {
-        if (err) { res.sendStatus(412); }
+        if (err) 
+          res.sendStatus(412); 
+
         res.sendStatus(204);
-      },
-    );
+
+      });
+
   });
+
 };

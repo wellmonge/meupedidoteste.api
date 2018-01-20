@@ -1,9 +1,10 @@
 import mongoose, { Schema } from 'mongoose';
 
 const productSchema =
-    new Schema({
+  new Schema({
     name: { type: String, required: true },
-    UnitPrice: { type: Number, default: null },
+    unitPrice: { type: Number },
+    multiple: { type: Number },
     createdAt: { type: Date, default: Date.now },
   });
 

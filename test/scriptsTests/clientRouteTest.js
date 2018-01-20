@@ -1,11 +1,9 @@
 import { request, expect } from '../helpers';
 import { defaultClient } from '../../utils/constants';
+import client from '../../models/client';
 
 describe('Client Routes', () => {
-  const defaultClient = {
-    name: 'Boba Fetch',
-  };
-
+  const clientUpdated = 'Client updated';
   describe('Rout POST /client/create', () => {
     it('should CREATE a client', (done) => {
       request
@@ -13,33 +11,40 @@ describe('Client Routes', () => {
         .set('Content-Type', 'application/json')
         .send(defaultClient)
         .end((err, res) => {
-          // expect(res.body[0].name).to.be.equal(defaultClient.name);
-          done(err);
+          if (err) done(err);
+          expect(res.body.Data.name).to.be.eql(defaultClient.name, "Name's client matched!");
+          done();
         });
     });
   });
 
-  // describe('Rout PUT /client/update', () => {
-  //   it('should UPDATE a client', (done) => {
-  //     request
-  //       .put('/client/update')
-  //       .send(defaultClient)
-  //       .end((err, res) => {
-  //         // expect(res.body[0].name).to.be.equal(defaultClient.name);
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('Rout PUT /client/update', () => {
+    it('should UPDATE a client', (done) => {
+      request
+        .put('/client/update')
+        .send({
+          name: clientUpdated,
+          oldName: defaultClient.name,
+        })
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res.body.Data.name).to.be.equal(clientUpdated, "Name's client matched!");
+          done();
+        });
+    });
+  });
 
   describe('Rout DELETE /client/remove', () => {
     it('should REMOVE a client', (done) => {
       request
         .delete('/client/remove')
-        .query({ name: defaultClient.name })
+        .query({ name: clientUpdated })
         .end((err, res) => {
-          // expect(res.body[0].name).to.be.equal(defaultClient.name);
+          if (err) done(err);
+          expect(res.status).to.be.equal(204);
           done();
         });
     });
   });
+
 });
