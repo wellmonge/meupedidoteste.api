@@ -2,7 +2,6 @@
 import Product from '../models/product';
 import { successResult, errorResult } from '../utils/constants';
 import productsSeed from '../seeds/product';
-import { fail } from 'assert';
 
 // const urlBase = "/api/Product";
 const urlBase = '/Product';
@@ -66,7 +65,7 @@ module.exports = (app) => {
         if (err) { res.sendStatus(412); }
 
         res.sendStatus(204);
-      },
+      }
     );
   });
 };
