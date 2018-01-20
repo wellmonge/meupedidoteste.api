@@ -45,8 +45,7 @@ describe('Product Routes', () => {
           if (err) done(err);
           expect(res.status).to.be.equal(204);
           done();
-        });        
+        });
     });
   });
-
 });

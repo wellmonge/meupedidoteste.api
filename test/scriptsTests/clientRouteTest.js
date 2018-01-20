@@ -1,6 +1,5 @@
 import { request, expect } from '../helpers';
 import { defaultClient } from '../../utils/constants';
-import client from '../../models/client';
 
 describe('Client Routes', () => {
   const clientUpdated = 'Client updated';
@@ -46,5 +45,4 @@ describe('Client Routes', () => {
         });
     });
   });
-
 });
