@@ -1,11 +1,7 @@
 # README #
 
-The code-name of this project is BESOURO, this RESTFUL contain all the rules about condo workflow and it's served mobile app conde by our team-mates.
 
 ### What is this repository for? ###
-
-* Contain the fist version o RESTFUL service for condo
-* 0.0.1
 
 
 ### How do I get set up? ###
