@@ -12,3 +12,18 @@ export const errorResult = serverMessage => ({
   Message: ERROR_MESSAGE,
   ServerMessage: serverMessage,
 });
+
+export const defaultClient = {
+  name: 'Boba Fetch',
+};
+
+export const defaultProduct = {
+  name: 'A280 blaster rifle',
+  unitPrice: 10.000,
+  multiple: 1,
+};
+
+export const defaultUser = {
+  username: 'meupedidoauth',
+  password: 'meupedidoauth2018',
+};

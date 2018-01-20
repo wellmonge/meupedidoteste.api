@@ -1,13 +1,21 @@
 import Client from '../models/client';
+import clientSeed from '../seeds/client';
 import { successResult, errorResult } from '../utils/constants';
 
 // const urlBase = "/api/client";
 const urlBase = '/client';
 
 module.exports = (app) => {
+  app.get(`${urlBase}/seed`, (req, res) => {
+    Client.model.insertMany(clientSeed, (err, result) => {
+      if (err) { res.json(err); }
+      res.json(result);
+    });
+  });
+
   app.post(`${urlBase}/create`, (req, res) => {
     if (!req.body) return;
-    const dataItem = new Client.Model(req.body);
+    const dataItem = new Client.model(req.body);
     dataItem.save((err, clientResult) => {
       if (err) { res.json(errorResult(err.Message)); }
 
@@ -17,7 +25,7 @@ module.exports = (app) => {
 
   app.put(`${urlBase}/update`, (req, res) => {
     if (!req.body) return;
-    const dataItem = new Client.Model(req.body);
+    const dataItem = new Client.model(req.body);
     Client.model.findOneAndUpdate(
       { name: dataItem.name }
       , dataItem
@@ -30,13 +38,12 @@ module.exports = (app) => {
     );
   });
 
-  app.delete(`${urlBase}/remove/`, (req, res) => {
+  app.delete(`${urlBase}/remove`, (req, res) => {
     if (!req.query) return;
     Client.model.findOneAndRemove(
       req.query
       , (err) => {
         if (err) { res.sendStatus(412); }
-
         res.sendStatus(204);
       },
     );

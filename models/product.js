@@ -1,13 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const productSchema =
-    new global.db.Schema({
+    new Schema({
     name: { type: String, required: true },
-    UnitPrice: { type: mongoose.Schema.Types.Decimal128, required: true },
-    createddAt: { type: Date },
+    UnitPrice: { type: Number, default: null },
+    createdAt: { type: Date, default: Date.now },
   });
 
 export default {
   Schema: productSchema,
-  Model: global.db.model('product', productSchema),
+  model: mongoose.model('product', productSchema),
 };

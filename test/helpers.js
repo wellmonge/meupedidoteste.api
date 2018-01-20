@@ -1,8 +1,8 @@
-import { SuperTest } from 'supertest';
+import supertest from 'supertest';
 import chai from 'chai';
-import app from '.././app';
+import app from '../app';
 
-const request = SuperTest(app);
+const request = supertest(app);
 const { expect } = chai;
 
 

@@ -1,5 +1,7 @@
+import mongoose, { Schema } from 'mongoose';
+
 const userSchema =
-    new global.db.Schema({
+    new Schema({
     username: { type: String },
     password: { type: String },
     createdAt: { type: Date, default: Date.now },
@@ -7,5 +9,5 @@ const userSchema =
 
 export default {
   Schema: userSchema,
-  Model: global.db.model('User', userSchema),
+  model: mongoose.model('User', userSchema),
 };

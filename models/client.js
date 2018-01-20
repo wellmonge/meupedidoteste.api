@@ -1,10 +1,12 @@
+import mongoose, { Schema } from 'mongoose';
+
 const clientSchema =
-    new global.db.Schema({
+    new Schema({
     name: { type: String, required: true },
-    createddAt: { type: Date, default: Date.now },
+    createdAt: { type: Date, default: Date.now },
   });
 
 export default {
   Schema: clientSchema,
-  Model: global.db.model('client', clientSchema),
+  model: mongoose.model('client', clientSchema),
 };

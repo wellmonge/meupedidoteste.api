@@ -1,6 +1,6 @@
 
 import User from '../models/user';
-import { utils } from '../utils/crypto';
+import utils from '../utils/crypto';
 import { SUCCESS_MESSAGE, ERROR_MESSAGE } from '../utils/constants';
 
 // const urlBase = '/api/user/';
@@ -8,7 +8,7 @@ const urlBase = '/user';
 
 module.exports = (app) => {
   app.get(`${urlBase}/seed`, (req, res) => {
-    const dataItem = new User.Model({
+    const dataItem = new User.model({
       username: 'meupedidoauth',
       password: utils.encrypt('meupedidoauth2018'),
     });
@@ -52,7 +52,7 @@ module.exports = (app) => {
     updatingUser = Object.assign(updatingUser, req.body);
     delete updatingUser.id;
 
-    User.model.findOneAndUpdate(
+    User.Model.findOneAndUpdate(
       {
         username: updatingUser.username,
         email: updatingUser.email,
@@ -80,7 +80,7 @@ module.exports = (app) => {
 
   app.delete(`${urlBase}/remove`, (req, res) => {
     if (!req.body) return;
-    User.model.findOneAndRemove({
+    User.Model.findOneAndRemove({
       username: req.body.username,
       email: req.body.email,
     }, (err, result) => {

@@ -1,14 +1,14 @@
 const clients = [
   {
-    name: 'Darth​ ​Vader',
+    name: 'Darth Vader',
   }, {
-    name: 'Obi-Wan​ ​Kenobi',
+    name: 'Obi-Wan Kenobi',
   }, {
-    name: 'Luke​ ​Skywalker',
+    name: 'Luke Skywalker',
   }, {
-    name: 'Imperador​ ​Palpatine',
+    name: 'Imperador Palpatine',
   }, {
-    name: 'Han​ ​Sol',
+    name: 'Han Solo',
   },
 ];
 
