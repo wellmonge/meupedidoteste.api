@@ -53,11 +53,7 @@ module.exports = (app) => {
         if (err) { res.sendStatus(412); }
 
         res.sendStatus(204);
-<<<<<<< HEAD
-      }
-=======
       },
->>>>>>> 2878902124388b72458fb33ad5e962608bd5ee51
     );
   });
 };
