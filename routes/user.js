@@ -1,16 +1,16 @@
 
-import User from '../models/user';
-import utils from '../utils/crypto';
-import { SUCCESS_MESSAGE, ERROR_MESSAGE } from '../utils/constants';
+const User = require('../models/user');
+const utils = require('../utils/crypto');
+const  { SUCCESS_MESSAGE, ERROR_MESSAGE } = require('../utils/constants');
 
 // const urlBase = '/api/user/';
 const urlBase = '/user';
 
-module.exports = (app) => {
+module.exports = app => {
   app.get(`${urlBase}/seed`, (req, res) => {
     const dataItem = new User.model({
       username: 'meupedidoauth',
-      password: utils.encrypt('meupedidoauth2018'),
+      password: utils.encrypt('meupedidoauth2018')
     });
     User.model.find({ username: dataItem.username }, (errFind, result) => {
       if (errFind) res.json(errFind);
@@ -18,7 +18,9 @@ module.exports = (app) => {
         res.json(result);
       } else {
         dataItem.save((err, userResult) => {
-          if (err) { res.json(err); }
+          if (err) {
+            res.json(err);
+          }
 
           res.json(userResult);
         });
@@ -30,17 +32,17 @@ module.exports = (app) => {
     if (!req.body) return;
     req.body.password = utils.encrypt(req.body.password);
     const dataItem = new User.Model(req.body);
-    dataItem.save().then((err) => {
+    dataItem.save().then(err => {
       if (err) {
         res.json({
           Success: false,
-          Message: ERROR_MESSAGE,
+          Message: ERROR_MESSAGE
         });
         return;
       }
       res.json({
         Success: true,
-        Message: SUCCESS_MESSAGE,
+        Message: SUCCESS_MESSAGE
       });
     });
   });
@@ -52,50 +54,45 @@ module.exports = (app) => {
     updatingUser = Object.assign(updatingUser, req.body);
     delete updatingUser.id;
 
-    User.Model.findOneAndUpdate(
-      {
-        username: updatingUser.username,
-        email: updatingUser.email,
-      }
-      , updatingUser
-      , { new: true, upsert: false }
-      , (err, result) => {
-        if (err) {
-          res.json({
-            Success: false,
-            Message: utils.errorMessage,
-            ServerMessage: err.message,
-          });
-          return;
-        }
-
+    User.Model.findOneAndUpdate({
+      username: updatingUser.username,
+      email: updatingUser.email
+    }, updatingUser, { new: true, upsert: false }, (err, result) => {
+      if (err) {
         res.json({
-          Success: true,
-          Result: result,
-          Message: utils.successMessage,
+          Success: false,
+          Message: utils.errorMessage,
+          ServerMessage: err.message
         });
-      },
-    );
+        return;
+      }
+
+      res.json({
+        Success: true,
+        Result: result,
+        Message: utils.successMessage
+      });
+    });
   });
 
   app.delete(`${urlBase}/remove`, (req, res) => {
     if (!req.body) return;
     User.Model.findOneAndRemove({
       username: req.body.username,
-      email: req.body.email,
+      email: req.body.email
     }, (err, result) => {
       if (err) {
         res.json({
           Success: false,
           Message: ERROR_MESSAGE,
-          ServerMessage: err.message,
+          ServerMessage: err.message
         });
         return;
       }
       res.json({
         Success: true,
         Result: result,
-        Message: SUCCESS_MESSAGE,
+        Message: SUCCESS_MESSAGE
       });
     });
   });

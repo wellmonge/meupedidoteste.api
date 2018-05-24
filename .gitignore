@@ -9,4 +9,5 @@ bin
 *.log
 .suo
 .vs
+dist
 yarn.lock

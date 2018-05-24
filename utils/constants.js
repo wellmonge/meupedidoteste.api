@@ -1,29 +1,29 @@
-export const SUCCESS_MESSAGE = 'Operação realizado com sucesso!';
-export const ERROR_MESSAGE = 'Ocorreu erro ao realizar operação!';
+exports.SUCCESS_MESSAGE = 'Operação realizado com sucesso!';
+exports.ERROR_MESSAGE = 'Ocorreu erro ao realizar operação!';
 
-export const successResult = data => ({
+exports.successResult = data => ({
   Success: true,
   Data: data,
-  Message: SUCCESS_MESSAGE,
+  Message: SUCCESS_MESSAGE
 });
 
-export const errorResult = serverMessage => ({
+exports.errorResult = serverMessage => ({
   Success: false,
   Message: ERROR_MESSAGE,
-  ServerMessage: serverMessage,
+  ServerMessage: serverMessage
 });
 
-export const defaultClient = {
-  name: 'Boba Fetch',
+exports.defaultClient = {
+  name: 'Boba Fetch'
 };
 
-export const defaultProduct = {
+exports.defaultProduct = {
   name: 'A280 blaster rifle',
   unitPrice: 10000,
-  multiple: 1,
+  multiple: 1
 };
 
-export const defaultUser = {
+exports.defaultUser = {
   username: 'meupedidoauth',
-  password: 'meupedidoauth2018',
+  password: 'meupedidoauth2018'
 };

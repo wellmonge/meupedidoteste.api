@@ -1,14 +1,13 @@
-import mongoose, { Schema } from 'mongoose';
+const  mongoose = require('mongoose');
 
-const productSchema =
-  new Schema({
-    name: { type: String, required: true },
-    unitPrice: { type: Number },
-    multiple: { type: Number },
-    createdAt: { type: Date, default: Date.now },
-  });
+const productSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  unitPrice: { type: Number },
+  multiple: { type: Number },
+  createdAt: { type: Date, default: Date.now }
+});
 
-export default {
+exports = {
   Schema: productSchema,
-  model: mongoose.model('product', productSchema),
+  model: mongoose.model('product', productSchema)
 };

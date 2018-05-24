@@ -1,14 +1,16 @@
-import Client from '../models/client';
-import clientSeed from '../seeds/client';
-import { successResult, errorResult } from '../utils/constants';
+const Client = require('../models/client');
+const  { successResult, errorResult } = require('../utils/constants');
+const clientSeed = require('../seeds/client');
 
 // const urlBase = "/api/client";
 const urlBase = '/client';
 
-module.exports = (app) => {
+module.exports = app => {
   app.get(`${urlBase}/seed`, (req, res) => {
     Client.model.insertMany(clientSeed, (err, result) => {
-      if (err) { res.json(err); }
+      if (err) {
+        res.json(err);
+      }
       res.json(result);
     });
   });
@@ -17,7 +19,9 @@ module.exports = (app) => {
     if (!req.body) return;
     const dataItem = new Client.model(req.body);
     dataItem.save((err, clientResult) => {
-      if (err) { res.json(errorResult(err.Message)); }
+      if (err) {
+        res.json(errorResult(err.Message));
+      }
 
       res.json(successResult(clientResult));
     });
@@ -31,29 +35,25 @@ module.exports = (app) => {
     updating.name = req.body.name;
     delete updating._id;
 
-    Client.model.findOneAndUpdate(
-      { name: req.body.oldName }
-      , updating
-      , {
-        new: true,
+    Client.model.findOneAndUpdate({ name: req.body.oldName }, updating, {
+      new: true
+    }, (err, clientResult) => {
+      if (err) {
+        res.json(errorResult(err.Message));
       }
-      , (err, clientResult) => {
-        if (err) { res.json(errorResult(err.Message)); }
 
-        res.json(successResult(clientResult));
-      },
-    );
+      res.json(successResult(clientResult));
+    });
   });
 
   app.delete(`${urlBase}/remove`, (req, res) => {
     if (!req.query) return;
-    Client.model.findOneAndRemove(
-      req.query
-      , (err) => {
-        if (err) { res.sendStatus(412); }
+    Client.model.findOneAndRemove(req.query, err => {
+      if (err) {
+        res.sendStatus(412);
+      }
 
-        res.sendStatus(204);
-      },
-    );
+      res.sendStatus(204);
+    });
   });
 };

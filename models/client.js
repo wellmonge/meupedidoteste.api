@@ -1,12 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
+const  mongoose = require('mongoose');
 
-const clientSchema =
-    new Schema({
-    name: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
-  });
+const clientSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now }
+});
 
-export default {
+exports = {
   Schema: clientSchema,
-  model: mongoose.model('client', clientSchema),
+  model: mongoose.model('client', clientSchema)
 };

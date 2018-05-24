@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+var crypto = require('crypto');
 
 const algorithm = 'aes-256-ctr';
 const secret = process.env.SECRET;
@@ -25,7 +25,8 @@ const utils = {
     const decipher = crypto.createDecipher(algorithm, secret);
     const dec = Buffer.concat([decipher.update(buffer), decipher.final()]);
     return dec;
-  },
+  }
 };
 
-export default utils;
+
+exports.utils = utils;

@@ -1,12 +1,12 @@
 
-import Product from '../models/product';
-import { successResult, errorResult } from '../utils/constants';
-import productsSeed from '../seeds/product';
+const Product = require('../models/product');
+const  { successResult, errorResult } = require('../utils/constants');
+const productsSeed = require('../seeds/product');
 
 // const urlBase = "/api/Product";
 const urlBase = '/Product';
 
-module.exports = (app) => {
+module.exports = app => {
   app.get(`${urlBase}/seed`, (req, res) => {
     Product.model.insertMany(productsSeed, (err, result) => {
       if (err) res.json(err);
@@ -40,32 +40,25 @@ module.exports = (app) => {
     updating.unitPrice = req.body.unitPrice;
     updating.multiple = req.body.multiple;
 
-
-    Product.model.findOneAndUpdate(
-      { name: req.body.oldName }
-      , updating
-      , {
-        new: true,
+    Product.model.findOneAndUpdate({ name: req.body.oldName }, updating, {
+      new: true
+    }, (err, productResult) => {
+      if (err) {
+        res.json(errorResult(err.Message));
       }
-      , (err, productResult) => {
-        if (err) {
-          res.json(errorResult(err.Message));
-        }
 
-        res.json(successResult(productResult));
-      },
-    );
+      res.json(successResult(productResult));
+    });
   });
 
   app.delete(`${urlBase}/remove`, (req, res) => {
     if (!req.query) return;
-    Product.model.findOneAndRemove(
-      req.query
-      , (err) => {
-        if (err) { res.sendStatus(412); }
-
-        res.sendStatus(204);
+    Product.model.findOneAndRemove(req.query, err => {
+      if (err) {
+        res.sendStatus(412);
       }
-    );
+
+      res.sendStatus(204);
+    });
   });
 };

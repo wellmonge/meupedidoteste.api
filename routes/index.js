@@ -1,8 +1,9 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/user';
-import utils from '../utils/crypto';
 
-module.exports = (app) => {
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+const utils = require('../utils/crypto');
+
+module.exports = app => {
   app.get('/', (req, res) => {
     res.json({ message: 'service is running.' });
   });
@@ -36,7 +37,7 @@ module.exports = (app) => {
             success: true,
             message: 'Token gerado com sucesso!',
             user,
-            token,
+            token
           });
         }
       }

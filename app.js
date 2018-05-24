@@ -1,9 +1,9 @@
-import express from 'express';
-import load from 'express-load';
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override';
-import errorHandler from 'error-handler';
-import dotenv from 'dotenv';
+const express = require( 'express');
+const load = require( 'express-load');
+const bodyParser = require( 'body-parser');
+const methodOverride = require( 'method-override');
+const errorHandler = require( 'error-handler');
+const dotenv = require( 'dotenv');
 
 const app = express();
 dotenv.config();
@@ -27,18 +27,13 @@ if (env === 'development') {
   app.use(errorHandler);
 }
 // production only
-if (env === 'production') {
-  // TODO
-}
+if (env === 'production') {}
+// TODO
+
 
 // load modules
-load('config')
-  .then('utils')
-  .then('routes')
-  .into(app);
+load('config').then('utils').then('routes').into(app);
 
 app.listen(app.get('port'), () => {
   console.log(`Express server listening on port ${app.get('port')}`);
 });
-
-export default app;

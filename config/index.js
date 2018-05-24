@@ -1,7 +1,8 @@
 
+const  bluebird = require('bluebird');
+const  mongoose = require('mongoose');
 
-import bluebird from 'bluebird';
-import mongoose from 'mongoose';
+
 
 const dburi = process.env.MONGODB_URI;
 
