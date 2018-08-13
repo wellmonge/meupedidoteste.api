@@ -6,7 +6,7 @@ const  mongoose = require('mongoose');
 
 const dburi = process.env.MONGODB_URI;
 
-global.db = mongoose.connect(dburi, { useMongoClient: true });
+global.db = mongoose.connect(dburi, { useNewUrlParser: true  });
 
 mongoose.Promise = bluebird;
 
