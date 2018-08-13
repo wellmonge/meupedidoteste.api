@@ -2,8 +2,6 @@
 const  bluebird = require('bluebird');
 const  mongoose = require('mongoose');
 
-
-
 const dburi = process.env.MONGODB_URI;
 
 global.db = mongoose.connect(dburi, { useNewUrlParser: true  });
