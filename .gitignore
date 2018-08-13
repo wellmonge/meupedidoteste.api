@@ -11,3 +11,4 @@ bin
 .vs
 dist
 yarn.lock
+.swp
